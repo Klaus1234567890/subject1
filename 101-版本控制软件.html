@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!-- 
         版本控制软件(版本控制系统):操作简便 易于对比 易于回溯 不易丢失 协作方便
@@ -28,7 +30,7 @@
                 git help <verb> 如git help config (网页打印)
                 git config -h (终端中打印)
 
-                获取Git仓库
+                初始化Git仓库
                 将尚未进行版本控制的本地目录转换为仓库
                     项目目录中打开Git Bash
                     执行git init命令将当前目录转化为仓库
@@ -38,18 +40,21 @@
                 git status 
                 git status -s 精简写法
                 git status --short 精简写法
-                    ??也表示未被追踪
+                    红 ?? 表示未被追踪
                     U未追踪
                     A已追踪
-                    绿 M已修改且暂存
-                    红 M已修改未暂存
+                    绿 M 已修改且暂存
+                    红 M 已修改未暂存
+                    绿 D 已删除文件
 
                 清除屏幕信息
                 clear
 
-                跟踪文件
-                git add
+                跟踪文件 暂存文件
+                git add 文件名 暂存单个文件
                 在changes to be committed说明已被跟踪 处于暂存状态
+                get add . 暂存多个文件一次性将新增和谁修改的文件暂存
+                
 
                 提交更新
                 git commit
@@ -57,6 +62,48 @@
 
                 对已提交的文件进行修改
                     红色M表示对已提交文件进行了修改
+                    用git add将修改文件暂存
+
+                撤销对文件的修改：用仓库内容覆盖文件内容 修改丢失 无法恢复 
+                git checkout -- 文件名
+
+                取消暂存文件
+                git reset HEAD 文件名
+                git reset HEAD . 取消多个暂存文件
+
+                跳过使用暂存区 工作区修改直接提交git仓库
+                git commit -a -m '提交内容描述'
+
+                移除文件
+                git rm -f 文件名 仓库和工作区同时移除
+                git rm --cached 文件名 只从仓库移除
+
+                忽略文件
+                创建.gitignore文件 流出忽略文件
+                #开头 表示注释
+                /开头 防止递归
+                /结尾 表示文件夹
+                !开头 表示取反
+                glob 文件与文件夹匹配 简化后的正则表达式
+                    *匹配零个或多个任意字符
+                    [abc]匹配方括号中的一个
+                    ?匹配任意一个字符
+                    **匹配任意中间文件夹
+
+                查看提交历史
+                gut log 
+                get log -数字 查看最近几次的提交历史
+                get log -数字 --pretty=oneline 在一行上展示最近几次提交历史
+                git log --数字 --pretty=format:"%h | %an | %ar | %s" 自定义输出格式 提交简写哈希值 作者名 修订日期 提交说明
+                q 退出查看
+
+                回退到指定版本
+                    展示所有提交历史 ：git log --pretty=oneline
+                    回退到指定id版本：git reset --hard <CommitID>
+                    旧版本中查看命令操作历史：git reflog --pretty=oneline
+                    ID跳转到最新版本：git reset --hard <CommitID>
+
+
 
 
 
@@ -65,6 +112,6 @@
      -->
 </body>
 <script>
-
 </script>
+
 </html>
